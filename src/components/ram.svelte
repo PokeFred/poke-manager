@@ -44,9 +44,11 @@
     }, 1000)
 </script>
 
-{#if typeof data !== "string"}
-    <div>Memory: {formatNumber(data.memory.used)} / {formatNumber(data.memory.total)}</div>
-    <div>Swap: {formatNumber(data.swap.used)} / {formatNumber(data.swap.total)}</div>
-{:else}
-    <div>{data}</div>
-{/if}
+<div class="card p-4">
+    {#if typeof data !== "string"}
+        <div>Memory: {formatNumber(data.memory.used)} / {formatNumber(data.memory.total)}</div>
+        <div>Swap: {formatNumber(data.swap.used)} / {formatNumber(data.swap.total)}</div>
+    {:else}
+        <div>{data}</div>
+    {/if}
+</div>
