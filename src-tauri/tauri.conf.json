@@ -55,7 +55,7 @@
         },
         "windows": [
             {
-                "title": "poke-manager",
+                "title": "Poke Manager",
                 "width": 800,
                 "height": 600,
                 "fullscreen": false,
