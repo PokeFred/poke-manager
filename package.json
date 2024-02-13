@@ -9,6 +9,8 @@
         "build": "tauri build"
     },
     "devDependencies": {
+        "@skeletonlabs/skeleton": "^2.8.0",
+        "@skeletonlabs/tw-plugin": "^0.3.1",
         "@sveltejs/vite-plugin-svelte": "^3.0.2",
         "@tauri-apps/api": "^1.5.3",
         "@tauri-apps/cli": "^1.5.9",
