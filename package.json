@@ -4,12 +4,14 @@
     "type": "module",
     "private": true,
     "scripts": {
-        "dev": "vite",
-        "build": "vite build",
-        "preview": "vite preview"
+        "tauri": "tauri",
+        "dev": "tauri dev",
+        "build": "tauri build"
     },
     "devDependencies": {
         "@sveltejs/vite-plugin-svelte": "^3.0.2",
+        "@tauri-apps/api": "^1.5.3",
+        "@tauri-apps/cli": "^1.5.9",
         "@tsconfig/svelte": "^5.0.2",
         "svelte": "^4.2.10",
         "tslib": "^2.6.2",
