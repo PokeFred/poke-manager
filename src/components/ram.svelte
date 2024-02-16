@@ -1,5 +1,6 @@
 <script lang="ts">
     import { invoke } from "@tauri-apps/api/tauri"
+  import { onMount } from "svelte";
 
     type Ram = {
         memory: Memory,
@@ -18,7 +19,7 @@
 
     async function getCurrentRamState(): Promise<Ram | string> {
         try {
-            const response: Ram = await invoke<Ram>("ram__get_current_state")
+            const response: Ram = await invoke<Ram>("get_ram")
             
             return response
         } catch (error) {
@@ -39,9 +40,12 @@
     }
 
     let data: Ram | string = ""
-    setInterval(async (): Promise<void> => {
-        data = await getCurrentRamState()
-    }, 1000)
+
+    onMount(async (): Promise<void> => {
+        setInterval(async (): Promise<void> => {
+            data = await getCurrentRamState()
+        }, 1000)
+    })
 </script>
 
 <div class="card p-4">

@@ -20,9 +20,9 @@ pub struct Swap {
 }
 
 #[tauri::command]
-pub fn ram__get_current_state() -> Ram {
-    let mut sys = System::new_all();
-    sys.refresh_all();
+pub fn get_ram() -> Ram {
+    let mut sys = System::new();
+    sys.refresh_memory();
 
     return Ram {
         memory: Memory {
@@ -34,18 +34,4 @@ pub fn ram__get_current_state() -> Ram {
             used: sys.used_swap()
         }
     };
-
-    /*
-    let mut sys = System::new_all();
-    sys.refresh_all();
-
-    let current_ram_state: RamState = RamState {
-        total_memory: sys.total_memory(),
-        used_memory: sys.used_memory(),
-        total_swap: sys.total_swap(),
-        used_swap: sys.used_swap()
-    };
-
-    return serde_json::to_string(&current_ram_state).unwrap()
-    */
 }

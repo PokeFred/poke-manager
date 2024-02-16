@@ -2,11 +2,11 @@
 
 mod ram;
 
-use ram::ram__get_current_state;
+use ram::get_ram;
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![ram__get_current_state])
+        .invoke_handler(tauri::generate_handler![get_ram])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
