@@ -29,7 +29,7 @@ const config = {
             },
         },
     ],
-    plugins: ["prettier-plugin-svelte", "prettier-plugin-tailwindcss", "prettier-plugin-rust"],
+    plugins: ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
 }
 
 export default config
