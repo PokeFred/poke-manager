@@ -1,28 +1,18 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 mod ram;
+mod disk;
+mod system;
 
 use ram::get_ram;
+use disk::get_disks;
+use system::get_system_information;
 
 fn main() {
-    /*
-    println!("System name:             {:?}", sysinfo::System::name());
-    println!("System kernel version:   {:?}", sysinfo::System::kernel_version());
-    println!("System OS version:       {:?}", sysinfo::System::os_version());
-    println!("System host name:        {:?}", sysinfo::System::host_name());
-
-    let disks = sysinfo::Disks::new_with_refreshed_list();
-    for disk in &disks {
-        println!("{:?}: {:?}", disk.name(), disk);
-    }
-    */
+    println!("{:?}", get_disks());
+    println!("{:?}", get_system_information());
 
     /*
-    let disks = sysinfo::Disks::new_with_refreshed_list();
-    for disk in disks.list() {
-        println!("{:?}: {:?}, {:?}, {:?}", disk.name(), disk.kind(), disk.available_space(), disk.total_space());
-    }
-
     println!("");
     let networks = sysinfo::Networks::new_with_refreshed_list();
     for (interface_name, network) in &networks {
@@ -36,7 +26,7 @@ fn main() {
     */
 
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![get_ram])
+        .invoke_handler(tauri::generate_handler![get_ram, get_disks])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

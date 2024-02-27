@@ -7,13 +7,13 @@ pub struct Ram {
     swap: Swap
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Memory {
     total: u64,
     used: u64,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Swap {
     total: u64,
     used: u64
@@ -21,7 +21,7 @@ pub struct Swap {
 
 #[tauri::command]
 pub fn get_ram() -> Ram {
-    let mut sys = System::new();
+    let mut sys: System = System::new();
     sys.refresh_memory();
 
     return Ram {
