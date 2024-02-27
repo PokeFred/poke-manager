@@ -6,6 +6,30 @@ on:
             - main
 
 jobs:
+    deploy-windows-10:
+        permissions:
+            contents: write
+        strategy:
+            fail-fast: false
+        runs-on: windows-latest
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v4
+            -   name: Setup NodeJS
+                uses: actions/setup-node@v4
+                with:
+                    node-version: 18
+            -   name: Install Rust
+                uses: dtolnay/rust-toolchain@stable
+            -   name: Install Frontend Dependencies
+                run: npm install
+            -   name: Build Application
+                run: npm run build
+            -   name: Publish Application
+                uses: actions/upload-artifact@v3
+                with:
+                    name: poke-manager_windows-10
+                    path: ./src-tauri/target/release/poke-manager.exe
     deploy-linux-ubuntu-20-04:
         permissions:
             contents: write
