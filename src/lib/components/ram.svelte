@@ -1,29 +1,29 @@
 <script lang="ts">
-    import { onMount } from "svelte"
-    import { invoke } from "@tauri-apps/api/tauri"
+    import { onMount } from 'svelte'
+    import { invoke } from '@tauri-apps/api/tauri'
 
     type Ram = {
-        memory: Memory,
+        memory: Memory
         swap: Swap
     }
 
     type Memory = {
-        total: number,
+        total: number
         used: number
     }
 
     type Swap = {
-        total: number,
+        total: number
         used: number
     }
 
     async function getCurrentRamState(): Promise<Ram | string> {
         try {
-            const response: Ram = await invoke<Ram>("get_ram")
-            
+            const response: Ram = await invoke<Ram>('get_ram')
+
             return response
         } catch (error) {
-            return "Error"
+            return 'Error'
         }
     }
 
@@ -39,7 +39,7 @@
         }
     }
 
-    let data: Ram | string = ""
+    let data: Ram | string = ''
 
     onMount(async (): Promise<void> => {
         setInterval(async (): Promise<void> => {
@@ -49,7 +49,7 @@
 </script>
 
 <div class="card p-4">
-    {#if typeof data !== "string"}
+    {#if typeof data !== 'string'}
         <div>Memory: {formatNumber(data.memory.used)} / {formatNumber(data.memory.total)}</div>
         <div>Swap: {formatNumber(data.swap.used)} / {formatNumber(data.swap.total)}</div>
     {:else}

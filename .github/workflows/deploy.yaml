@@ -13,23 +13,23 @@ jobs:
             fail-fast: false
         runs-on: windows-latest
         steps:
-            -   name: Checkout
-                uses: actions/checkout@v4
-            -   name: Setup NodeJS
-                uses: actions/setup-node@v4
-                with:
-                    node-version: 18
-            -   name: Install Rust
-                uses: dtolnay/rust-toolchain@stable
-            -   name: Install Frontend Dependencies
-                run: npm install
-            -   name: Build Application
-                run: npm run build
-            -   name: Publish Application
-                uses: actions/upload-artifact@v3
-                with:
-                    name: poke-manager_windows-10
-                    path: ./src-tauri/target/release/poke-manager.exe
+            - name: Checkout
+              uses: actions/checkout@v4
+            - name: Setup NodeJS
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 18
+            - name: Install Rust
+              uses: dtolnay/rust-toolchain@stable
+            - name: Install Frontend Dependencies
+              run: npm install
+            - name: Build Application
+              run: npm run build
+            - name: Publish Application
+              uses: actions/upload-artifact@v3
+              with:
+                  name: poke-manager_windows-10
+                  path: ./src-tauri/target/release/poke-manager.exe
     deploy-linux-ubuntu-20-04:
         permissions:
             contents: write
@@ -37,24 +37,24 @@ jobs:
             fail-fast: false
         runs-on: ubuntu-20.04
         steps:
-            -   name: Checkout
-                uses: actions/checkout@v4
-            -   name: Setup NodeJS
-                uses: actions/setup-node@v4
-                with:
-                    node-version: 18
-            -   name: Install Rust
-                uses: dtolnay/rust-toolchain@stable
-            -   name: Install System Dependencies
-                run: |
-                    sudo apt update
-                    sudo apt install -y libgtk-3-dev libwebkit2gtk-4.0-dev libayatana-appindicator3-dev librsvg2-dev
-            -   name: Install Frontend Dependencies
-                run: npm install
-            -   name: Build Application
-                run: npm run build
-            -   name: Publish Application
-                uses: actions/upload-artifact@v3
-                with:
-                    name: poke-manager_linux-ubuntu-20-04
-                    path: ./src-tauri/target/release/poke-manager
+            - name: Checkout
+              uses: actions/checkout@v4
+            - name: Setup NodeJS
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 18
+            - name: Install Rust
+              uses: dtolnay/rust-toolchain@stable
+            - name: Install System Dependencies
+              run: |
+                  sudo apt update
+                  sudo apt install -y libgtk-3-dev libwebkit2gtk-4.0-dev libayatana-appindicator3-dev librsvg2-dev
+            - name: Install Frontend Dependencies
+              run: npm install
+            - name: Build Application
+              run: npm run build
+            - name: Publish Application
+              uses: actions/upload-artifact@v3
+              with:
+                  name: poke-manager_linux-ubuntu-20-04
+                  path: ./src-tauri/target/release/poke-manager
